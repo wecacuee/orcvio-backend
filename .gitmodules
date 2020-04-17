@@ -1,0 +1,12 @@
+[submodule "src/darknet_ros"]
+	path = src/darknet_ros
+	url = git@github.com:wecacuee/darknet_ros.git
+[submodule "src/starmap_ros_msgs"]
+	path = src/starmap_ros_msgs
+	url = git@github.com:wecacuee/starmap_ros_msgs.git
+[submodule "src/sort_ros"]
+	path = src/sort_ros
+	url = git@github.com:moshanATucsdedu/sort_ros.git
+[submodule "src/open_OrcVIO_cpp"]
+	path = src/open_OrcVIO_cpp
+	url = git@github.com:moshanATucsdedu/open_OrcVIO_cpp.git
