@@ -1,0 +1,9 @@
+catkin-tools
+rospkg
+rosdistro
+rosinstall
+opencv-python
+matplotlib
+empy
+pycryptodomex
+gnupg
