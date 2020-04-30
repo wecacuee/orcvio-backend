@@ -1,5 +1,5 @@
 ARG BASE_IMG=wecacuee/orcvio-backend-deps:latest
-FROM BASE_IMG
+FROM $BASE_IMG
 
 ENV CATKIN_WORKSPACE /home/root/catkin_ws
 RUN mkdir -p $CATKIN_WORKSPACE
