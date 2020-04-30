@@ -16,7 +16,10 @@ sudo sh install-deps/install-apt-get-packages.sh
 virtualenv --python=python3.6 .tox/py36
 source .tox/py36/bin/activate
 pip3 install --no-cache -r install-deps/pip-requirements.txt
-catkin config -DPYTHON_EXECUTABLE=/usr/bin/python3 -DPYTHON_INCLUDE_DIR=/usr/include/python3.6m -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.6m.so --backlist darknet_ros --extend /opt/ros/melodic/setup.bash
+catkin config -DPYTHON_EXECUTABLE=/usr/bin/python3 \
+    -DPYTHON_INCLUDE_DIR=/usr/include/python3.6m \
+    -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.6m.so 
+    --blacklist darknet_ros --extend /opt/ros/melodic/
 catkin build
 source setup.bash
 

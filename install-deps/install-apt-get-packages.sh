@@ -1,5 +1,6 @@
 echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list
 apt-key adv --keyserver 'hkp://keyserver.ubuntu.com:80' --recv-key C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
+add-apt-repository ppa:ignaciovizzo/opencv3-nonfree
 
 apt-get update && \
     apt-get -y install python3-pip git \
@@ -15,7 +16,10 @@ apt-get update && \
             ros-melodic-pcl-ros \
             libsm-dev \
             libxrender-dev \
+            libopencv-dev \
             rsync \
             unzip \
+            stow \
+            virtualenv \
     && \
     rm -rf /var/lib/apt/lists/*

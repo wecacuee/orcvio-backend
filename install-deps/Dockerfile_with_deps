@@ -1,0 +1,28 @@
+ARG BASE_IMG=wecacuee/ros-melodic-bionic-nvidia:latest
+FROM BASE_IMG # wecacuee/ros-melodic-bionic-nvidia:latest
+
+ENV CATKIN_WORKSPACE /home/root/catkin_ws
+RUN mkdir -p /home/root/
+COPY install-deps $CATKIN_WORKSPACE/install-deps
+RUN cd $CATKIN_WORKSPACE && bash install-deps/install-apt-get-packages.sh
+
+ENV SOURCE_PREFIX /usr/local/src
+ENV STOW_PREFIX /usr/local/stow
+ENV INSTALL_PREFIX /usr/local/
+
+RUN cd $CATKIN_WORKSPACE && \
+    make -f install-deps/install-sophus.mk  && \
+    rm -rf ${SOURCE_PREFIX}
+
+RUN cd $CATKIN_WORKSPACE && \
+    . /opt/ros/melodic/setup.sh && \
+    make -f install-deps/install-catkin-simple.mk && \
+    rm -rf ${SOURCE_PREFIX}
+
+RUN cd $CATKIN_WORKSPACE && make -f install-deps/install-opencv.mk && \
+    rm -rf ${SOURCE_PREFIX}
+
+RUN cd $CATKIN_WORKSPACE && \
+    virtualenv --python=python3.6 .tox/py36 && \
+    . .tox/py36/bin/activate && \
+    pip3 install --no-cache -r install-deps/pip-requirements.txt
