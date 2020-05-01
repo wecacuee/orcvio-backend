@@ -1,4 +1,4 @@
-![Docker Image CI](https://github.com/wecacuee/orcvio-backend/workflows/Docker%20Image%20CI/badge.svg)
+![Dockerfile_with_deps](https://github.com/wecacuee/orcvio-backend/workflows/Dockerfile_with_deps/badge.svg)
 
 # Scripts to help install required system packages
 
