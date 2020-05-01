@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Dockerfile_with_deps
 
 on:
   push:
