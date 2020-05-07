@@ -21,8 +21,27 @@ RUN cd $CATKIN_WORKSPACE && \
 
 RUN cd $CATKIN_WORKSPACE && make -f install-deps/install-opencv.mk && \
     rm -rf ${SOURCE_PREFIX}
+RUN apt-get remove libopencv-*
 
 RUN cd $CATKIN_WORKSPACE && \
     virtualenv --python=python3.6 .tox/py36 && \
     . .tox/py36/bin/activate && \
-    pip3 install --no-cache -r install-deps/pip-requirements.txt
+    pip3 install --no-cache -r install-deps/pip-requirements.txt && \
+    mkdir -p src && \
+    git clone https://github.com/ros-perception/vision_opencv.git src/vision_opencv && \
+    catkin config -DPYTHON_EXECUTABLE=$(which python) \
+        -DPYTHON_INCLUDE_DIR=/usr/include/python3.6m \
+        -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.6m.so \
+        --extend /opt/ros/melodic/ && \
+    catkin build 
+RUN echo "\
+. $CATKIN_WORKSPACE/.tox/py36/bin/activate \
+. $CATKIN_WORKSPACE/devel/setup.bash \
+" > $CATKIN_WORKSPACE/setup.bash
+
+RUN echo "\
+.  $CATKIN_WORKSPACE/setup.bash \
+eval "$@" \
+" > /ros_entrypoint.bash
+RUN chmod +x /ros_entrypoint.bash
+ENTRYPOINT [ /ros_entrypoint.bash ]

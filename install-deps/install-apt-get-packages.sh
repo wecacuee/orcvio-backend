@@ -8,7 +8,6 @@ apt-get update && \
             ros-melodic-random-numbers \
             libsuitesparse-dev \
             ros-melodic-pluginlib \
-            ros-melodic-opencv-apps \
             ros-melodic-pcl-conversions \
             ros-melodic-rviz \
             ros-melodic-ros-base \
@@ -16,7 +15,6 @@ apt-get update && \
             ros-melodic-pcl-ros \
             libsm-dev \
             libxrender-dev \
-            libopencv-dev \
             rsync \
             unzip \
             stow \
